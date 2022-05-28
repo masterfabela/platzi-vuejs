@@ -1,9 +1,25 @@
 const vm = Vue.createApp({
   data() {
     return {
-      img: 'https://i.picsum.photos/id/1/5616/3744.jpg?hmac=kKHwwU8s46oNettHKwJ24qOlIAsWN9d2TtsXDoCWWsQ',
+      number: 0,
+      changeTimes: 0,
+      event: 'mouseover',
     };
   },
-  template: `<img v-bind:["src"]="img" v-bind:alt='img' />`,
+  methods: {
+    operate(operation) {
+      this.number += operation;
+      this.changeTimes++;
+    },
+  },
+  template: `
+    <div>
+      <button v-on:[event]="operate(1)">+</button>
+      <button v-on:[event]="operate(-1)">-</button>
+    </div>
+    <span>{{number}}</span>
+    </br>
+    <span>{{changeTimes}}</span>
+  `,
 }).mount('#app');
 console.log(vm);
