@@ -1,25 +1,14 @@
 const vm = Vue.createApp({
   data() {
     return {
-      number: 0,
-      changeTimes: 0,
-      event: 'mouseover',
+      text: 'Hola vue',
     };
   },
-  methods: {
-    operate(operation) {
-      this.number += operation;
-      this.changeTimes++;
-    },
-  },
   template: `
-    <div>
-      <button v-on:[event]="operate(1)">+</button>
-      <button v-on:[event]="operate(-1)">-</button>
-    </div>
-    <span>{{number}}</span>
-    </br>
-    <span>{{changeTimes}}</span>
+  <p>{{text}}</p>
+  <input 
+    type="text" 
+    v-model="text" />
   `,
 }).mount('#app');
 console.log(vm);
