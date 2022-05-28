@@ -1,9 +1,9 @@
 const vm = Vue.createApp({
   data() {
     return {
-      text: '<p>Hola vue<p>',
+      img: 'https://i.picsum.photos/id/1/5616/3744.jpg?hmac=kKHwwU8s46oNettHKwJ24qOlIAsWN9d2TtsXDoCWWsQ',
     };
   },
-  template: `<div v-once v-html="text"></div>`,
+  template: `<img v-bind:["src"]="img" v-bind:alt='img' />`,
 }).mount('#app');
 console.log(vm);
