@@ -1,9 +1,6 @@
 const vm = Vue.createApp({
   data() {
     return {
-      firstName: 'Jose Ramon',
-      lastName: 'Vieites Romay',
-      now: new Date(),
       text: 'Puerta Cerrada',
       open: false,
     };
@@ -12,12 +9,11 @@ const vm = Vue.createApp({
     label() {
       return this.open ? 'Cerrar' : 'Abrir';
     },
-  },
-  methods: {
-    fullName1() {
-      return this.firstName + ' ' + this.lastName;
+    styles() {
+      return this.open ? ['open'] : ['close'];
     },
   },
+  methods: {},
   watch: {
     open(value) {
       if (value) {
@@ -28,8 +24,11 @@ const vm = Vue.createApp({
     },
   },
   template: `
-  <div>{{text}}</div>
-  <button @click="open = !open">{{label}}</button>
+  <div class="container" :class="styles">
+    <h2>{{text}}</h2>
+    <button @click="open = !open">{{label}}</button>
+  </div>
+  
   `,
 }).mount('#app');
 console.log(vm);
