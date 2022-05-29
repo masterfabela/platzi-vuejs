@@ -4,14 +4,13 @@ const vm = Vue.createApp({
       firstName: 'Jose Ramon',
       lastName: 'Vieites Romay',
       now: new Date(),
+      text: 'Puerta Cerrada',
+      open: false,
     };
   },
   computed: {
-    fullName() {
-      return this.firstName + ' ' + this.lastName;
-    },
-    today() {
-      return this.now.toLocaleDateString();
+    label() {
+      return this.open ? 'Cerrar' : 'Abrir';
     },
   },
   methods: {
@@ -19,10 +18,18 @@ const vm = Vue.createApp({
       return this.firstName + ' ' + this.lastName;
     },
   },
+  watch: {
+    open(value) {
+      if (value) {
+        this.text = 'Puerta abierta';
+      } else {
+        this.text = 'Puerta cerrada';
+      }
+    },
+  },
   template: `
-  <div>{{ fullName1() }}</div>
-  <div>{{ fullName }}</div>
-  <div>{{ today }}</div>
+  <div>{{text}}</div>
+  <button @click="open = !open">{{label}}</button>
   `,
 }).mount('#app');
 console.log(vm);
