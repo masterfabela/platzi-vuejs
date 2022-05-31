@@ -4,6 +4,26 @@ const vm = Vue.createApp({
       text: 'Puerta Cerrada',
       open: false,
       username: '',
+      newTitle: '',
+      newDescription: '',
+      posts: [
+        {
+          title: 'Titulo 1',
+          description: 'Lorem ipsum...',
+        },
+        {
+          title: 'Titulo 2',
+          description: 'Lorem ipsum...',
+        },
+        {
+          title: 'Titulo 3',
+          description: 'Lorem ipsum...',
+        },
+        {
+          title: 'Titulo 4',
+          description: 'Lorem ipsum...',
+        },
+      ],
     };
   },
   computed: {
@@ -14,7 +34,17 @@ const vm = Vue.createApp({
       return this.open ? ['open'] : ['close'];
     },
   },
-  methods: {},
+  methods: {
+    addItem(title, description) {
+      this.posts.push({
+        title: title,
+        description: description,
+      });
+    },
+    deleteItem(index) {
+      this.posts.splice(index, 1);
+    },
+  },
   watch: {
     open(value) {
       if (value) {
@@ -30,9 +60,23 @@ const vm = Vue.createApp({
     <h2>{{text}}</h2>
     <div v-if="open">
       <p>Hola, {{username}}</p>
+      <div>
+        <label>Title</label>
+        <input type="text" v-model="newTitle"/>
+        <label>Description</label>
+        <input type="text" v-model="newDescription"/>
+        <button @click="addItem(newTitle, newDescription)">Añadir</button>
+      </div>
+      <div class="list">
+        <div v-for="(item, i) in posts" :key="i" class="item">
+          <div class="title">{{item.title}}</div>
+          <p>{{item.description}}</p>
+          <button @click="deleteItem(i)">Delete</button>
+        </div>
+      </div>
     </div>
     <div v-else>
-      <label>Username</label>
+      <div>Username</div>
       <input type="text" v-model="username">
     </div>
     <button @click="open = !open">
@@ -44,3 +88,6 @@ const vm = Vue.createApp({
   `,
 }).mount('#app');
 console.log(vm);
+
+// AÑADIR
+// ELIMINAR
