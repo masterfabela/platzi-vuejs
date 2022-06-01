@@ -86,6 +86,3 @@ const app = Vue.createApp({
   </div>
   `,
 });
-
-// AÑADIR
-// ELIMINAR
