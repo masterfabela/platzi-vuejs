@@ -1,4 +1,4 @@
-const vm = Vue.createApp({
+const app = Vue.createApp({
   data() {
     return {
       text: 'Puerta Cerrada',
@@ -68,11 +68,11 @@ const vm = Vue.createApp({
         <button @click="addItem(newTitle, newDescription)">Añadir</button>
       </div>
       <div class="list">
-        <div v-for="(item, i) in posts" :key="i" class="item">
-          <div class="title">{{item.title}}</div>
-          <p>{{item.description}}</p>
-          <button @click="deleteItem(i)">Delete</button>
-        </div>
+        <item 
+          v-for="(item, i) in posts" 
+          :key="i"
+          :post="item"
+        />
       </div>
     </div>
     <div v-else>
@@ -84,10 +84,8 @@ const vm = Vue.createApp({
       <div v-else >Salir</div>
     </button>
   </div>
-  
   `,
-}).mount('#app');
-console.log(vm);
+});
 
 // AÑADIR
 // ELIMINAR
