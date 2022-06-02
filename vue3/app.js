@@ -4,13 +4,18 @@ const app = Vue.createApp({
       items: ['uno', 'dos', 'tres'],
     };
   },
+  methods: {
+    remove(index) {
+      this.items = this.items.filter((element, i) => index !== i);
+    },
+  },
   template: `
     <ul>
       <v-item 
-        v-for="item in items" 
-        :text="item" >
-      </v-item>
-      <v-item></v-item>
+        v-for="(item, index) in items" 
+        :text="item"
+        @remove="remove(index)"
+      />
     </ul>
   `,
 });

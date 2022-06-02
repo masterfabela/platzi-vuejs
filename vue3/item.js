@@ -1,11 +1,14 @@
 app.component('v-item', {
   props: {
-    text: {
-      default: 'Texto vacio',
+    text: String,
+  },
+  methods: {
+    remove() {
+      this.$emit('remove');
     },
   },
   template: `
-  <li>
+  <li @click="remove">
     {{text}}
   </li>`,
 });
