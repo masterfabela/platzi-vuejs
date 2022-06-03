@@ -4,14 +4,8 @@ const app = Vue.createApp({
       text: 'Hola vue',
     };
   },
-  provide() {
-    return {
-      otroTexto: this.text,
-    };
-  },
   methods: {},
   template: `
-    <div>{{text}}</div>
-    <otro/>
+    <v-button ref="elemento" :label="text"></v-button>
   `,
 });
